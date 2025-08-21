@@ -1,0 +1,229 @@
+.home {
+  text-align: center;
+  color: white;
+  background-color: #ffffff;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  max-width: 100%;
+  margin-right: 1em;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade 1s ease-in-out;
+}
+
+/* Animación suave */
+@keyframes fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+.slider-text {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10; /* Asegura que esté encima de la imagen */
+}
+
+.slider-text p {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Hace legible el texto */
+  margin-bottom: 15px;
+}
+
+
+.btn-explorar {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #facc15;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.btn-explorar:hover {
+  background-color: #ffde59;
+}
+
+/* Paquetes destacados */
+.sec-paquetes { padding: 24px; max-width: 1200px; margin: 0 auto; }
+.sec-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.sec-head h2 { margin:0; }
+.link-ver-todos { background:transparent; border:1px solid #e5e7eb; padding:8px 12px; border-radius:8px; cursor:pointer; }
+
+.paqs-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:16px;
+}
+
+.paq-card {
+  background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden;
+  box-shadow: 0 8px 24px rgba(16,24,40,.06);
+  display:flex; flex-direction:column;
+}
+
+.paq-imgwrap { position:relative; height:160px; overflow:hidden; }
+.paq-imgwrap img { width:100%; height:100%; object-fit:cover; display:block; }
+.ciudad-badge {
+  position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.6); color:#fff;
+  font-size:12px; padding:4px 8px; border-radius:999px;
+}
+
+.paq-body { padding:12px; display:flex; flex-direction:column; gap:8px; color:#111827; }
+.paq-title { margin:0; font-size:16px; }
+.paq-desc { margin:0; color:#6b7280; max-height:40px; overflow:hidden; }
+.paq-meta { display:flex; gap:10px; color:#374151; font-size:13px; }
+.paq-foot { display:flex; justify-content:space-between; align-items:center; margin-top:6px; }
+.precio { font-size:18px; }
+.btn-reservar { background:#2563eb; color:#fff; border:none; padding:8px 12px; border-radius:10px; cursor:pointer; }
+.btn-reservar:hover { background:#1e40af; }
+.error { color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:10px 12px; border-radius:10px; }
+
+/* Paquetes destacados */
+.sec-paquetes {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.sec-head h2 {
+  margin: 0;
+  color: #111827; /* Texto bien oscuro */
+}
+
+.link-ver-todos {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #1f2937; /* Gris oscuro */
+}
+
+.paqs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.paq-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.paq-imgwrap {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.paq-imgwrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ciudad-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f9fafb;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.paq-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paq-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #111827; /* Muy oscuro para buen contraste */
+}
+
+.paq-desc {
+  margin: 0;
+  color: #4b5563; /* Gris intermedio */
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.paq-meta {
+  display: flex;
+  gap: 10px;
+  color: #374151;
+  font-size: 13px;
+}
+
+.paq-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.precio {
+  font-size: 18px;
+  font-weight: bold;
+  color: #047857; /* Verde para resaltar el precio */
+}
+
+.btn-reservar {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-reservar:hover {
+  background: #1e40af;
+}
+
+.error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 10px 12px;
+  border-radius: 10px;
+}

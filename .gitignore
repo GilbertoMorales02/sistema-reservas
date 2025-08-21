@@ -1,0 +1,17 @@
+# Ignorar dependencias de Node
+/Frontend/node_modules
+
+# Ignorar el entorno virtual de Python
+/Backend/venv/
+
+# Ignorar la caché de Python
+/Backend/__pycache__/
+
+# Ignorar archivos de entorno (si los tienes)
+.env
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+
+#Ignorar script de SQL
+/Backend/script-11.sql

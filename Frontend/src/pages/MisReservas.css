@@ -1,0 +1,152 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --primary:#2563eb;
+  --primary-600:#1e40af;
+  --danger:#ef4444;
+  --danger-600:#dc2626;
+  --success:#16a34a;
+  --border:#e5e7eb;
+  --shadow:0 8px 24px rgba(16,24,40,.08);
+}
+
+.mis-reservas-page{
+  min-height:calc(100vh - 64px);
+  background:var(--bg);
+  padding:24px;
+  color:var(--text);
+}
+
+.mis-reservas-page h2{
+  margin:0 0 16px;
+  font-weight:700;
+}
+
+/* Card contenedor */
+.tabla-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:12px;
+}
+
+/* Wrapper para scroll horizontal en móviles */
+.table-wrap{
+  width:100%;
+  overflow:auto;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+/* Tabla */
+.tabla-reservas{
+  width:100%;
+  border-collapse:collapse;
+  min-width:880px; /* para evitar saltos en móvil; se hace scroll */
+  font-size:14px;
+}
+
+.tabla-reservas thead th{
+  text-align:left;
+  font-weight:600;
+  color:#374151;
+  background:#f9fafb;
+  border-bottom:1px solid var(--border);
+  padding:12px 14px;
+  position:sticky;
+  top:0;
+  z-index:1;
+}
+
+.tabla-reservas tbody td{
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+
+.tabla-reservas tbody tr:hover{
+  background:#fcfcfd;
+}
+
+/* Código de reserva */
+.code{
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+/* Badges de estado */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:600;
+  border:1px solid transparent;
+}
+
+.badge--activa{
+  color:#065f46;
+  background:#ecfdf5;
+  border-color:#d1fae5;
+}
+.badge--reembolsada, .badge--cancelada{
+  color:#7c2d12;
+  background:#fff7ed;
+  border-color:#ffedd5;
+}
+
+/* Botón cancelar */
+.btn-cancelar{
+  background:var(--danger);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:8px 12px;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
+.btn-cancelar:hover{ background:var(--danger-600); }
+.btn-cancelar:disabled{
+  background:#e5e7eb;
+  color:#6b7280;
+  cursor:not-allowed;
+}
+
+/* Chips menores */
+.chip{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:8px;
+  background:#f3f4f6;
+  color:#374151;
+  font-weight:600;
+  font-size:12px;
+}
+
+/* Empty state */
+.empty{
+  margin-top:8px;
+  padding:24px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
+  background:#fff;
+}
+
+/* Utilidades */
+.right{ text-align:right; }
+.muted{ color:var(--muted); }
+
+/* Responsive refinements */
+@media (max-width: 768px){
+  .mis-reservas-page{ padding:16px; }
+  .tabla-card{ padding:10px; }
+  .tabla-reservas{ min-width:720px; }
+}
