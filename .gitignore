@@ -15,3 +15,5 @@
 
 #Ignorar script de SQL
 /Backend/script-11.sql
+
+/venv
