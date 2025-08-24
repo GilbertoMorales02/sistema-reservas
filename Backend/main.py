@@ -19,6 +19,9 @@ app = FastAPI()
 # main.py
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from helpers import to_jsonable
+
+
 
 ALLOWED = os.getenv("ALLOWED_ORIGINS", "https://flway.fyi,https://www.flway.fyi")
 origins = [o.strip() for o in ALLOWED.split(",") if o.strip()]
@@ -115,39 +118,48 @@ def login_cliente(login_data: LoginData):
 
     return {"mensaje":"Login exitoso","cliente_id":row[0]}
 
+from typing import Optional, List
 class Destino(BaseModel):
     destino_id: int
     ciudad: str
     pais: str
-    descripcion: str
-    url_imagen: str
-
+    descripcion: Optional[str] = None
+    url_imagen: Optional[str] = None
 
 @app.get("/destinos", response_model=List[Destino])
 def obtener_destinos():
+    conn = None
+    cur = None
     try:
-        conexion = obtener_conexion()
-        cursor = conexion.cursor()
-        cursor.execute("SELECT destino_id, ciudad, pais, descripcion, url_imagen FROM Destinos")
-        resultados = cursor.fetchall()
+        conn = obtener_conexion()
+        cur = conn.cursor()
+        # en Postgres los identificadores sin comillas se normalizan a minúsculas
+        cur.execute("""
+            SELECT destino_id, ciudad, pais, descripcion, url_imagen
+            FROM destinos
+            ORDER BY destino_id DESC
+        """)
+        rows = cur.fetchall()
 
-        destinos = []
-        for fila in resultados:
-            destinos.append(Destino(
-                destino_id=fila[0],
-                ciudad=fila[1],
-                pais=fila[2],
-                descripcion=fila[3],
-                url_imagen=fila[4]
-            ))
-
-        cursor.close()
-        conexion.close()
+        # Construye objetos del modelo (Pydantic aceptará None en opcionales)
+        destinos = [
+            Destino(
+                destino_id=r[0],
+                ciudad=r[1],
+                pais=r[2],
+                descripcion=r[3],
+                url_imagen=r[4],
+            )
+            for r in rows
+        ]
         return destinos
-
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    
+        # deja rastro en logs de Railway para depurar si algo más falla
+        print("ERROR /destinos:", repr(e))
+        raise HTTPException(status_code=500, detail="Error al obtener destinos")
+    finally:
+        if cur: cur.close()
+        if conn: conn.close()
 
 
 @app.get("/paquetes/destino/{destino_id}")
