@@ -16,14 +16,29 @@ from datetime import date
 
 app = FastAPI()
 
+# main.py
+from fastapi.middleware.cors import CORSMiddleware
+import os
+
+ALLOWED = os.getenv("ALLOWED_ORIGINS", "https://flway.fyi,https://www.flway.fyi")
+origins = [o.strip() for o in ALLOWED.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción pon solo el dominio del frontend
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials=True,   # si vas a usar cookies/autenticación
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# (recomendado) endpoints básicos
+@app.get("/")
+def root():
+    return {"ok": True, "msg": "Backend Sistema de Reservas activo"}
+
+@app.get("/health")
+def health():
+    return {"ok": True}
 class Cliente(BaseModel):
     nombre: str
     apellido_paterno: str
